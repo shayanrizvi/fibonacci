@@ -29,7 +29,7 @@ public class Fibonacci {
 		// user input loop
 		do {
 			
-			System.out.println("Enter an integer between 1 and 92");			// input prompt
+			System.out.println("Enter an integer between 0 and 92");			// input prompt
 			System.out.println("Enter \"d\" to toggle between dynamic and normal mode");
 			System.out.println("Enter \"t\" to toggle between tabulation and memoization mode");
 			System.out.println("Enter \"c\" to clear fibonacci sequence memory: ");
