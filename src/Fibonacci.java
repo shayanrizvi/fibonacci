@@ -4,7 +4,7 @@ import java.util.*;
  * 
  * @author Shayan
  *
- * This program takes a user entered integer n between 1 and 92 and returns the nth fibonacci number.
+ * This program takes a user entered integer n between 0 and 92 and returns the nth fibonacci number.
  * The user can toggle between dynamic and normal mode to get the fibonacci number either dynamically or normally.
  * The user can also toggle between a top-down memoization approach and a bottom-up tabulation approach.
  * 
@@ -79,7 +79,7 @@ public class Fibonacci {
 				}
 				
 				// check for valid input range
-				if(0 < n && n < 93) {
+				if(-1 < n && n < 93) {
 					
 					if(d) {
 						
@@ -118,7 +118,7 @@ public class Fibonacci {
 		
 		c++;																	// increment method call count
 		
-		if(n < 3) return 1;														// return 1 for 1 and 2
+		if(n < 2) return n;														// return fib(0) and fib(1)
 		else return fib(n-1) + fib(n-2);										// return sum of previous two fibonacci numbers
 		
 	}
@@ -135,14 +135,14 @@ public class Fibonacci {
 		c++;																	// increment method call count
 		
 		// check if fibonacci number is stored for index n
-		if(fibList.length >= n) {												// check if fibonacci number list has n length
+		if(fibList.length > n) {												// check if fibonacci number list has n length
 			
-			if(fibList[n-1] != 0) return fibList[n-1];							// check if nth index is not 0
+			if(fibList[n] != 0) return fibList[n];								// check if nth index is not 0
 			
-		} else fibList = Arrays.copyOf(fibList, n);								// copy fibonacci number list to new list with n indices
+		} else fibList = Arrays.copyOf(fibList, n + 1);							// copy fibonacci number list to new list with n indices
 		
-		if(n < 3) return fibList[n-1] = 1;										// return 1 for 1 and 2
-		else return fibList[n-1] = mFib(n-1) + mFib(n-2);						// store and return sum of previous two fibonacci numbers
+		if(n < 2) return fibList[n] = n;										// return fib(0) and fib(1)
+		else return fibList[n] = mFib(n-1) + mFib(n-2);							// store and return sum of previous two fibonacci numbers
 		
 	}
 
@@ -158,21 +158,21 @@ public class Fibonacci {
 		c++;																	// increment method call count
 		
 		// check if fibonacci number is not stored for index n
-		if(fibList.length < n) {
+		if(fibList.length <= n) {
 			
-			fibList = Arrays.copyOf(fibList, n);								// copy fibonacci number list to new list with n indices
+			fibList = Arrays.copyOf(fibList, n + 1);							// copy fibonacci number list to new list with n indices
 			
 			// for the number of indices up to n
-			for(int i = 0; i < n; i++) {
+			for(int i = 0; i < n + 1; i++) {
 				
-				if(i < 2) fibList[i] = 1;										// initialize first two fibonacci numbers
+				if(i < 2) fibList[i] = i;										// initialize first two fibonacci numbers
 				else fibList[i] = fibList[i-1] + fibList[i-2];					// calculate and store the fibonacci number for the index
 				
 			}
 		
 		}
 		
-		return fibList[n-1];													// return f(n)
+		return fibList[n];														// return f(n)
 		
 	}
 	
